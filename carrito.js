@@ -67,6 +67,11 @@ function cargarProductosCarrito() {
                         <p>${producto.price}</p>
                     </div>
 
+                    <div class="carrito-producto-cantidad">
+                        <small>Cantidad</small>
+                        <p>${producto.cantidad}</p>
+                    </div>
+
                     <button class="carrito-producto-eliminar" id="${producto.id}">Eliminar</button>
 
                 
