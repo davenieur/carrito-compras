@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Carrito de compras</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link rel="stylesheet" href="./carrito.css">
+</head>
+
+<body>
+    <nav id="nav-fixed" class="navbar navbar-expand-lg bg-body-tertiary fixed-container">
+        <div id="div-nav" class="container-fluid container">
+            <a class="navbar-brand" href="#"></a>
+            <button id="btn-menu" class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false"
+                aria-label="Toggle navigation"><img class="img-icon" id="btn-menu">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNavDropdown">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <div class="icono-nav">
+                            <a class="nav-link" aria-current="page" href="../index.html"><img id ="icono-logo" class="img-icon" src="../" alt="Home"
+                                ></a>
+                        </div>
+                    </li>
+                    <li class="nav-item">
+                        <div class="icono-nav">
+                            <a class="nav-link" aria-current="page" href="./acerca.html"><img class="img-icon" src="../" alt="Acerca de nosotras"><br>Acerca de nosotras</a>
+                        </div>
+                    </li>
+                    <li class="nav-item">
+                        <div class="icono-nav">
+                            <a class="nav-link" aria-current="page" href="./compradores.html"><img class="img-icon" src="../" alt="Nuevos compradores"><br>Nuevos compradores</a>
+                        </div>
+                    </li>
+                    <li class="nav-item dropdown icono-nav">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                            aria-expanded="false"><img class="img-icon" src="../" alt="Talento Mexa"><br>
+                            Talento Mexa
+                        </a>
+                        <div id="div-coll">
+                            <ul class="dropdown-menu  nav-coll">
+                                <div>
+                                    <li><a id="pp" class="dropdown-item" href="./talento.html">Primer año</a></li>
+                                    <li><a class="dropdown-item" href="./talento.html">Segundo año</a></li>
+                                    <li><a class="dropdown-item" href="./talento.html">Tercer año</a></li>
+                                    <li><a class="dropdown-item" href="./talento.html">Cuarto año</a></li>
+                                </div>
+                            </ul>
+                        </div>
+                    </li>
+
+                    <li class="nav-item dropdown icono-nav">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                            aria-expanded="false"><img class="img-icon" src="../" alt="Catálogo"><br>
+                            Catálogo
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="./catalogo.html">Grabado</a></li>
+                            <li><a class="dropdown-item" href="./catalogo.html">Escultura</a></li>
+                            <li><a class="dropdown-item" href="./catalogo.html">Óleo</a></li>
+                            <li><a class="dropdown-item" href="./catalogo.html">Collage</a></li>
+                            <li><a class="dropdown-item" href="./catalogo.html">Acuarela</a></li>
+                            <li><a class="dropdown-item" href="./catalogo.html">Fotografía</a></li>
+                            <li><a class="dropdown-item" href="./catalogo.html">Acrílico</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item">
+                        <div class="icono-nav">
+                            <a class="nav-link" aria-current="page" href="./login.html"><img class="img-icon" src="../" alt="Log in"><br>Login</a>
+                        </div>
+                    </li>
+                    <li class="nav-item">
+                        <div class="icono-nav">
+                            <a id="active-page" class="nav-link" aria-current="page" href="./carrito.html"><img class="img-icon" src="../" alt="Carrito de compras"><br>Carrito</a>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <br><br><br><br><br>
+    <h1>Carrito de Compras</h1>
+    <br><br><br><br><br><br>
+
+
+    <main>
+        <!-- <h2 class="titulo-principal">Carrito</h2> -->
+        <div class="contenedor-carrito">
+            <p id="carrito-vacio" class="carrito-vacio">Tu carrito está vacío. <i class="bi bi-emoji-frown"></i></p>
+
+            <div id="carrito-productos" class="carrito-productos disabled">
+                <!-- Esto se va a completar con el JS -->
+            </div>
+
+            <div id="carrito-acciones" class="carrito-acciones disabled">
+                <div class="carrito-acciones-izquierda">
+                    <button id="carrito-acciones-vaciar" class="carrito-acciones-vaciar">Vaciar carrito</button>
+                </div>
+                <div class="carrito-acciones-derecha">
+                    <div class="carrito-acciones-total">
+                        <p>Total:</p>
+                        <p id="total">$3000</p>
+                    </div>
+                    <button id="carrito-acciones-comprar" class="carrito-acciones-comprar">Comprar ahora</button>
+                </div>
+            </div>
+
+            <p id="carrito-comprado" class="carrito-comprado disabled">Muchas gracias por tu compra. <i class="bi bi-emoji-laughing"></i></p>
+
+        </div>
+    </main>
+
+
+    <h1>Registro de información de envío</h1>
+
+    <div id="border-form" class="col-12 border">
+        <form id="form-compradores" class="row g-3 needs-validation" novalidate>
+            <div class="col-md-12">
+                <h3>Información</h3>
+                <label for="correo" class="form-label">Correo electrónico</label>
+                <input type="email" class="form-control" id="correo" placeholder="Ingrese su correo electrónico"
+                    pattern="^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$" required>
+                <div class="error" id="correoError"></div>
+                <br>
+
+                <h3>Dirección</h3>    
+                <input type="text" class="form-control" id="direccion" placeholder="Calle" required>
+                <div class="error" id="direccionError"></div>
+                <br>
+
+                <input type="text" class="form-control" id="noExterior" placeholder="No. exterior" required minlength="1" maxlength="7" required>
+                <div class="error" id="noExteriorError"></div>
+                <br>
+
+                <input type="text" class="form-control" id="noInterior" placeholder="No. interior" minlength="1" maxlength="5" required>
+                <br>
+
+                <input type="text" class="form-control" id="codigoPostal" placeholder="Código postal"
+                    minlength="5" maxlength="7" required>
+                <div class="error" id="codigoPostalError"></div>
+                <br>
+
+                <input type="text" class="form-control" id="colonia" placeholder="Colonia">
+                <br>
+
+                <label for="estado" class="form-label">Estado</label>
+                <select class="form-control" id="estado" required>
+                    <option value="">Seleccione su estado</option>
+                    <option value="Aguascalientes">Aguascalientes</option>
+                    <option value="Baja California">Baja California</option>
+                    <option value="Baja California Sur">Baja California Sur</option>
+                    <option value="Campeche">Campeche</option>
+                    <option value="Chiapas">Chiapas</option>
+                    <option value="Chihuahua">Chihuahua</option>
+                    <option value="Ciudad de México">Ciudad de México</option>
+                    <option value="Coahuila">Coahuila</option>
+                    <option value="Colima">Colima</option>
+                    <option value="Durango">Durango</option>
+                    <option value="Estado de México">Estado de México</option>
+                    <option value="Guanajuato">Guanajuato</option>
+                    <option value="Guerrero">Guerrero</option>
+                    <option value="Hidalgo">Hidalgo</option>
+                    <option value="Jalisco">Jalisco</option>
+                    <option value="Michoacán">Michoacán</option>
+                    <option value="Morelos">Morelos</option>
+                    <option value="Nayarit">Nayarit</option>
+                    <option value="Nuevo León">Nuevo León</option>
+                    <option value="Oaxaca">Oaxaca</option>
+                    <option value="Puebla">Puebla</option>
+                    <option value="Querétaro">Querétaro</option>
+                    <option value="Quintana Roo">Quintana Roo</option>
+                    <option value="San Luis Potosí">San Luis Potosí</option>
+                    <option value="Sinaloa">Sinaloa</option>
+                    <option value="Sonora">Sonora</option>
+                    <option value="Tabasco">Tabasco</option>
+                    <option value="Tamaulipas">Tamaulipas</option>
+                    <option value="Tlaxcala">Tlaxcala</option>
+                    <option value="Veracruz">Veracruz</option>
+                    <option value="Yucatán">Yucatán</option>
+                    <option value="Zacatecas">Zacatecas</option>
+                </select>
+                <div class="error" id="estadoError"></div>
+                <br>
+
+                <input type="tel" class="form-control" id="telefono" placeholder="Teléfono"
+                    minlength="10" maxlength="10" required>
+                <div class="error" id="telefonoError"></div>
+                <br>
+
+                <button type="submit" class="btn btn-primary">Enviar</button>
+            </div>
+        </form>
+    </div>
+
+    
+    <br><br><br><br>
+    <br><br><br><br>
+    <footer class="footer bg-dark text-white pt-2 pb-2">
+        <div class="container text-center text-md-left">
+            <div class="row text-center text-md-left">
+                <div class="col-md-3 col-lg-3 col-xl-3 mx-auto mt-3">
+                    <h4 class="text-uppercase mb-4 font-weight-bold text-white">S-Tu-Arte</h4>
+                    <p class=" text-light" id="footerDescription">
+                        Descubre y apoya el talento de las, los y les artistas universitaries desde nuestra plataforma.
+                    </p>
+                </div>
+                <div class="col-md-2 col-lg-2 col-xl-2 mx-auto mt-3">
+                    <h5 class="text-uppercase mb-4 font-weight-bold text-white">Términos y Condiciones</h5>
+                    <p id="footerTC">
+                        <a href="#" class="text-light" style="text-decoration:none"> Consulta la política de Términos y
+                            Condiciones</a>
+                    </p>
+                </div>
+                <div class="col-md-3 col-lg-2 col-xl-2 mx-auto mt-3">
+                    <h5 class="text-uppercase mb-4 font-weight-bold text-white">Contacto</h5>
+                    <p id="footerHome">
+                        <i class="fas fa-home"></i>
+                        México
+                    </p>
+                    <p id="footerEmail">
+                        <i class="fa fa-envelope" mr-3"></i>
+                        <a href="#" class="text-light">contactastuarte@gmail.com</a>
+                    </p>
+                    <p id="footerPhone">
+                        <i class="fas fa-phone"></i>
+                        +52 67987532
+                    </p>
+                </div>
+                <hr class="mb-4">
+                <div class="row align-items-center">
+                    <div class="col-md-7 col-lg-4">
+                        <p id="footerCopyright"> &copy; 2024 S-Tu-Arte. Todos los derechos reservados.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+    <script src="./carrito.js"></script>
+
+</body>
+
+</html>
