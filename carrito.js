@@ -1,6 +1,15 @@
 let productosEnCarrito = localStorage.getItem("productos-en-carrito");
 productosEnCarrito = JSON.parse(productosEnCarrito);
-console.log(productosEnCarrito);
+
+// Total del carrito
+
+const total = document.querySelector("#total");
+
+
+const numeroProductos = productosEnCarrito.reduce((total, producto) => total + producto.cantidad, 0);
+
+numerito.innerText = numeroProductos
+
 let productos = [];
 
 fetch("./productos.json")
@@ -32,19 +41,9 @@ function cargarProductosCarrito() {
     contenedorCarritoAcciones.classList.remove("disabled");
     contenedorCarritoComprado.classList.add("disabled");
 
-    //contenedorCarritoProductos.innerHTML = "";
-    //let productoId = localStorage.getItem("Producto");
-    console.log(productosEnCarrito);
-    let productoEncontrado = productos.find(producto => producto.id === parseInt(productosEnCarrito));
-    //console.log(productoEncontrado);
-if (productoEncontrado) {
-    console.log("Producto encontrado:", productoEncontrado);
-} else {
-    console.log("Producto no encontrado");
-}
-    //if (productosEnCarrito && productosEnCarrito.length > 0) {
-    if (productosEnCarrito) {
-console.log("Entra");
+ 
+    if (productosEnCarrito.length > 0) {
+        console.log("Entra");
         contenedorCarritoVacio.classList.add("disabled");
         contenedorCarritoProductos.classList.remove("disabled");
         contenedorCarritoAcciones.classList.remove("disabled");
@@ -52,29 +51,33 @@ console.log("Entra");
     
         contenedorCarritoProductos.innerHTML = "";
     
-        //productosEnCarrito.forEach(producto => {
+        productosEnCarrito.forEach(producto => {
     
             const div = document.createElement("div");
             div.classList.add("carrito-producto");
             div.innerHTML = `
-                <img class="carrito-producto-imagen" src="${productoEncontrado.images}" alt="${productoEncontrado.description}">
-                <div class="carrito-producto-titulo">
-                    <small>Título</small>
-                    <h3>${productoEncontrado.name}</h3>
-                </div>
+                    <img class="carrito-producto-imagen" src="${producto.images}" alt="${producto.description}">
+                    <div class="carrito-producto-titulo">
+                        <small>Título</small>
+                        <h3>${producto.name}</h3>
+                    </div>
 
-                <div class="carrito-producto-precio">
-                    <small>Precio</small>
-                    <p>$${productoEncontrado.price}</p>
-                </div>
+                    <div class="carrito-producto-precio">
+                        <small>Precio</small>
+                        <p>${producto.price}</p>
+                    </div>
+
+                    <button class="carrito-producto-eliminar" id="${producto.id}">Eliminar</button>
+
+                
             `;
     
             contenedorCarritoProductos.append(div);
-        //})
+        })
     
-    //actualizarBotonesEliminar();
-    //actualizarTotal();
-	
+    actualizarBotonesEliminar();
+    actualizarTotal();
+    
     } else {
         contenedorCarritoVacio.classList.remove("disabled");
         contenedorCarritoProductos.classList.add("disabled");
@@ -94,60 +97,84 @@ function actualizarBotonesEliminar() {
     });
 }
 
-function eliminarDelCarrito(e) {
-    Toastify({
-        text: "Producto eliminado",
-        duration: 3000,
-        close: true,
-        gravity: "top", // `top` or `bottom`
-        position: "right", // `left`, `center` or `right`
-        stopOnFocus: true, // Prevents dismissing of toast on hover
-        style: {
-          background: "linear-gradient(to right, #4b33a8, #785ce9)",
-          borderRadius: "2rem",
-          textTransform: "uppercase",
-          fontSize: ".75rem"
-        },
-        offset: {
-            x: '1.5rem', // horizontal axis - can be a number or a string indicating unity. eg: '2em'
-            y: '1.5rem' // vertical axis - can be a number or a string indicating unity. eg: '2em'
-          },
-        onClick: function(){} // Callback after click
-      }).showToast();
 
-    const idBoton = e.currentTarget.id;
-    const catalogo = productosEnCarrito.findCatalogo(producto => producto.eliminar === idBoton);
-    
-    productosEnCarrito.splice(catalogo, 1);
-    cargarProductosCarrito();
+function actualizarNumerito() {
+    const numeroProductos = productosEnCarrito.reduce((total, producto) => total + producto.cantidad, 0);
+
+    numerito.innerText = numeroProductos
 
     localStorage.setItem("productos-en-carrito", JSON.stringify(productosEnCarrito));
 
 }
 
-botonVaciar.addEventListener("click", vaciarCarrito);
-function vaciarCarrito() {
+function eliminarDelCarrito(e) {
+    const idBoton = e.currentTarget.id;
+
+    const productoEliminado = productos.find(producto => producto.id == idBoton);
+
 
     Swal.fire({
-        title: '¿Estás seguro?',
+        icon: 'question',
+        html: `¿Eliminar ${productoEliminado.name} del carrito?`,
+        showCancelButton: true,
+        focusConfirm: false,
+        confirmButtonText: 'Sí',
+        cancelButtonText: 'No',
+        
+    }).then((result) => {
+        if (result.isConfirmed) {
+    
+            const index = productosEnCarrito.findIndex(producto => producto.id == idBoton);
+        
+            
+            if(index !== -1) {
+                const indexEnCarrito = productosEnCarrito.findIndex(producto => producto.id == idBoton);
+                productosEnCarrito.splice(indexEnCarrito, 1);
+                console.log("Carrito", productosEnCarrito)
+            } 
+        
+        
+            actualizarNumerito();
+        
+            localStorage.setItem("productos-en-carrito", JSON.stringify(productosEnCarrito));
+        
+           
+           cargarProductosCarrito();
+        
+        }
+    })
+
+    actualizarNumerito()
+
+}
+
+function vaciarCarrito() {
+    
+    Swal.fire({
         icon: 'question',
         html: `Se van a borrar ${productosEnCarrito.reduce((acc, producto) => acc + producto.cantidad, 0)} productos.`,
         showCancelButton: true,
         focusConfirm: false,
         confirmButtonText: 'Sí',
-        cancelButtonText: 'No'
+        cancelButtonText: 'No',
+        
     }).then((result) => {
         if (result.isConfirmed) {
-            productosEnCarrito.length = 0;
+            productosEnCarrito = [];
             localStorage.setItem("productos-en-carrito", JSON.stringify(productosEnCarrito));
             cargarProductosCarrito();
         }
-      })
+    })
+
+    actualizarNumerito()
 }
 
+botonVaciar.addEventListener("click", vaciarCarrito);
 
 function actualizarTotal() {
-    const totalCalculado = productosEnCarrito.reduce((acc, producto) => acc + (producto.price * producto.cantidad), 0);
+
+    const totalCalculado = productosEnCarrito.reduce((acc, producto) => 
+        acc + (parseFloat(producto.price.replace('$', '').replace(',', '').replace('MXN', '')) * parseInt(producto.cantidad)), 0);
     total.innerText = `$${totalCalculado}`;
 }
 
